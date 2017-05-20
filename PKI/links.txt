@@ -1,0 +1,31 @@
+
+DAVID's Server  
+ssh -i ./.ssh/david.ppk user@94.112.183.49
+pswd: neXusmaimmaim
+
+
+curl multipart/form-data put
+
+https://www.google.lu/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=curl+multipart/form-data+put&*
+
+
+http://stackoverflow.com/questions/
+10765243/how-can-i-rewrite-this-curl-multipart-form-data-request-without-using-f
+
+http://stackoverflow.com/questions/29563907/curl-post-with-multipart-form-data-and-json
+
+http://stackoverflow.com/questions/12667797/using-curl-to-upload-post-data-with-files
+
+curl \
+  -F "Curl=1" \
+  -F "Desc=Loaded from curl" \
+  -F "UplFiles=@/home/alex/Documents/biology.pdf" \
+  radula.uni.lux:8071/pki-test
+
+
+CURL example for tls:
+curl -v --tlsv1.2 --cipher RC4-SHA --key ./somekey.pem
+--cert ./somecert.crt https://somedomain.com/somepath
+
+ - this is example for JSON-RPC
+https://haisum.github.io/2015/10/13/rpc-jsonrpc-gorilla-example-in-golang/

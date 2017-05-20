@@ -1,0 +1,37 @@
+<html>
+<header> </header>
+<title> Example </title>
+<h1> Simple example on Smart Contracts </h1>
+
+<form action="/test" method="post">
+<table border="1">
+<tr>
+<th>Field 1</th> <th>Field 2</th> <th>Field 3</th>
+</tr>
+<td> <input type="text" name="Prod"> </td>
+<td> <input type="text" name="SerNum"> </td>
+<td> <input type="text" name="Owner"> </td>
+</table>
+<input type="submit" name="AddButton" value="Add">
+<p>
+
+<table border="1">
+<tr>
+<th>Field 1</th>
+<th>Field 2</th>
+<th>Field 3</th>
+<th>DELETE</th>
+</tr>
+{{range $Rec := . }}
+<tr>
+<td>{{ $Rec.Producer }}</td>
+<td>{{ $Rec.SerialNumber }}</td>
+<td>{{ $Rec.Owner }}</td>
+<td><input type="checkbox" name="Deletion" value="{{ $Rec.Id }}">To delete</td>
+</tr>
+{{end}}
+</table>
+<input type="submit" name="DeleteButton" value="Delete">
+</form>
+<br>
+</html>

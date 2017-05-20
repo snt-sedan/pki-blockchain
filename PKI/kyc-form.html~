@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="description" content="WebRTC code samples">
+  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+  <meta itemprop="description" content="Client-side WebRTC code samples">
+  <meta itemprop="name" content="WebRTC code samples">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta id="theme-color" name="theme-color" content="#ffffff">
+
+  <base target="_blank">
+
+  <title>MediaStream Recording</title>
+
+  <link rel="stylesheet" href="public/css/main.css">
+
+</head>
+
+<script>
+  // Check for the various File API support.
+  if (window.File && window.FileReader && window.FileList) {
+    // Great success! All the File APIs are supported.
+  } else {
+    alert('The File APIs are not fully supported in this browser.');
+  }
+
+  var serversocket = new WebSocket("ws://localhost:8080/echo");
+ 
+  serversocket.onopen = function() {
+      serversocket.send("Connection init");
+  }
+ 
+  // Write message on receive
+  serversocket.onmessage = function(e) {
+      //document.getElementById('comms').innerHTML += "Received: " + e.data + "<br>";
+      window.location.reload(true);
+  };
+ 
+  function senddata() {
+      var data = document.getElementById('sendtext').value;
+      serversocket.send(data);
+      document.getElementById('comms').innerHTML += "Sent: " + data + "<br>";
+  }
+
+
+  function handleFileSelect(evt) {
+    var files = evt.target.UplFiles; // FileList object
+
+    alert("I'm here")
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('UplFiles').addEventListener('change', handleFileSelect, false);
+</script>
+
+<body>
+
+<br><br>
+<h1> Preliminary upload of documents for remote identification</h1>
+
+<br><br>
+<form enctype="multipart/form-data" name="DocList" action="/kyc-test" method="post" target="_self">
+<table border="1">
+<tr>
+<th>Document description</th>
+<th>Time of uploading</th>
+<th>File</th>
+<th>Hash</th>
+<th>Decoded data</th>
+<th>DELETE</th>
+</tr>
+{{range $doc := .Docs }}
+<tr>
+<td>{{ $doc.Desc }}</td>
+<td>{{ $doc.CreationStr }}</td>
+<td>{{ $doc.Name }}</td>
+<td>{{ $doc.Hash }}</td>
+<td>{{ $doc.Decryption }}</td>
+<td><input type="checkbox" name="Deletion" value="{{ $doc.Id }}">To delete</td>
+</tr>
+{{end}}
+</table>
+<input type="submit" name="DeleteButton" value="Delete">
+</form>
+
+<br><br>
+  <table border="0">
+  <tr><td>
+    Please record yourself with your passport pronouncing the code "{{ .RandomStr }}"
+  </td></tr>
+  </table>
+
+  <div id="container">
+    <video id="gum" autoplay muted></video>
+    <video id="recorded" autoplay loop></video>
+
+    <div>
+      <button id="record">Start Recording</button>
+      <button id="play" disabled>Play</button>
+      <button id="download" disabled>Download</button>
+    </div>
+
+  </div>
+
+  <!-- include adapter for srcObject shim -->
+  <script src="public/fe-js/adapter.js"></script>
+  <!-- <script src="public/fe-js/main.js"></script> -->
+  <!--   <script src="../../../js/lib/ga.js"></script> -->
+
+<p><p>
+<br><br>
+<form enctype="multipart/form-data" name="DocUpload" action="/kyc-test" method="post" target="_self">
+<table border="0">
+<tr><td>
+  With the button below please pick the video record with the scans of your documents
+</td></tr>
+
+<tr><td> <input type="text" name="Desc"> </td></tr> 
+<tr><td>
+  <input type="checkbox" name="Encryption" value="Encrypt">To encrypt
+</tr></td>
+<tr><td>
+  <input type="file" id="UplFiles" name="UplFiles" multiple>
+</td></tr>
+<tr><td>
+
+</td></tr>
+</table>
+<input type="submit" name="AddButton" value="Upload document">
+<p> <br>
+
+<output id="list">  </output>
+</form>
+</body>
+</html>
+
+

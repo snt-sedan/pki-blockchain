@@ -1,0 +1,334 @@
+// This file is an automatically generated Go binding. Do not modify as any
+// change will likely be lost upon the next re-generation!
+
+package main
+
+import (
+	"math/big"
+	"strings"
+
+	"github.com/ethereum/go-ethereum/accounts/abi"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
+)
+
+// LuxUni_KYCABI is the input ABI used to generate the binding from.
+const LuxUni_KYCABI = `[{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"deletedRegData","outputs":[{"name":"nodeSender","type":"address"},{"name":"deletionDate","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_regID","type":"uint256"}],"name":"deleteRegDatum","outputs":[{"name":"err","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"founder","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"numRegData","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_ownerHash","type":"bytes"},{"name":"_videoHash","type":"bytes"},{"name":"_dataHash","type":"bytes"},{"name":"_fileName","type":"string"},{"name":"_description","type":"string"}],"name":"newRegDatum","outputs":[{"name":"_regID","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"regData","outputs":[{"name":"nodeSender","type":"address"},{"name":"ownerHash","type":"bytes"},{"name":"videoHash","type":"bytes"},{"name":"dataHash","type":"bytes"},{"name":"fileName","type":"string"},{"name":"description","type":"string"},{"name":"creationDate","type":"uint256"},{"name":"active","type":"bool"}],"payable":false,"type":"function"},{"inputs":[],"type":"constructor"}]`
+
+// LuxUni_KYC is an auto generated Go binding around an Ethereum contract.
+type LuxUni_KYC struct {
+	LuxUni_KYCCaller     // Read-only binding to the contract
+	LuxUni_KYCTransactor // Write-only binding to the contract
+}
+
+// LuxUni_KYCCaller is an auto generated read-only Go binding around an Ethereum contract.
+type LuxUni_KYCCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// LuxUni_KYCTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type LuxUni_KYCTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// LuxUni_KYCSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type LuxUni_KYCSession struct {
+	Contract     *LuxUni_KYC       // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts     // Call options to use throughout this session
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+}
+
+// LuxUni_KYCCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type LuxUni_KYCCallerSession struct {
+	Contract *LuxUni_KYCCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts     // Call options to use throughout this session
+}
+
+// LuxUni_KYCTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type LuxUni_KYCTransactorSession struct {
+	Contract     *LuxUni_KYCTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts     // Transaction auth options to use throughout this session
+}
+
+// LuxUni_KYCRaw is an auto generated low-level Go binding around an Ethereum contract.
+type LuxUni_KYCRaw struct {
+	Contract *LuxUni_KYC // Generic contract binding to access the raw methods on
+}
+
+// LuxUni_KYCCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type LuxUni_KYCCallerRaw struct {
+	Contract *LuxUni_KYCCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// LuxUni_KYCTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type LuxUni_KYCTransactorRaw struct {
+	Contract *LuxUni_KYCTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewLuxUni_KYC creates a new instance of LuxUni_KYC, bound to a specific deployed contract.
+func NewLuxUni_KYC(address common.Address, backend bind.ContractBackend) (*LuxUni_KYC, error) {
+	contract, err := bindLuxUni_KYC(address, backend.(bind.ContractCaller), backend.(bind.ContractTransactor))
+	if err != nil {
+		return nil, err
+	}
+	return &LuxUni_KYC{LuxUni_KYCCaller: LuxUni_KYCCaller{contract: contract}, LuxUni_KYCTransactor: LuxUni_KYCTransactor{contract: contract}}, nil
+}
+
+// NewLuxUni_KYCCaller creates a new read-only instance of LuxUni_KYC, bound to a specific deployed contract.
+func NewLuxUni_KYCCaller(address common.Address, caller bind.ContractCaller) (*LuxUni_KYCCaller, error) {
+	contract, err := bindLuxUni_KYC(address, caller, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &LuxUni_KYCCaller{contract: contract}, nil
+}
+
+// NewLuxUni_KYCTransactor creates a new write-only instance of LuxUni_KYC, bound to a specific deployed contract.
+func NewLuxUni_KYCTransactor(address common.Address, transactor bind.ContractTransactor) (*LuxUni_KYCTransactor, error) {
+	contract, err := bindLuxUni_KYC(address, nil, transactor)
+	if err != nil {
+		return nil, err
+	}
+	return &LuxUni_KYCTransactor{contract: contract}, nil
+}
+
+// bindLuxUni_KYC binds a generic wrapper to an already deployed contract.
+func bindLuxUni_KYC(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(LuxUni_KYCABI))
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, parsed, caller, transactor), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_LuxUni_KYC *LuxUni_KYCRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _LuxUni_KYC.Contract.LuxUni_KYCCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_LuxUni_KYC *LuxUni_KYCRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _LuxUni_KYC.Contract.LuxUni_KYCTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_LuxUni_KYC *LuxUni_KYCRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _LuxUni_KYC.Contract.LuxUni_KYCTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_LuxUni_KYC *LuxUni_KYCCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _LuxUni_KYC.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_LuxUni_KYC *LuxUni_KYCTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _LuxUni_KYC.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_LuxUni_KYC *LuxUni_KYCTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _LuxUni_KYC.Contract.contract.Transact(opts, method, params...)
+}
+
+// DeletedRegData is a free data retrieval call binding the contract method 0x313cea8b.
+//
+// Solidity: function deletedRegData( uint256) constant returns(nodeSender address, deletionDate uint256)
+func (_LuxUni_KYC *LuxUni_KYCCaller) DeletedRegData(opts *bind.CallOpts, arg0 *big.Int) (struct {
+	NodeSender   common.Address
+	DeletionDate *big.Int
+}, error) {
+	ret := new(struct {
+		NodeSender   common.Address
+		DeletionDate *big.Int
+	})
+	out := ret
+	err := _LuxUni_KYC.contract.Call(opts, out, "deletedRegData", arg0)
+	return *ret, err
+}
+
+// DeletedRegData is a free data retrieval call binding the contract method 0x313cea8b.
+//
+// Solidity: function deletedRegData( uint256) constant returns(nodeSender address, deletionDate uint256)
+func (_LuxUni_KYC *LuxUni_KYCSession) DeletedRegData(arg0 *big.Int) (struct {
+	NodeSender   common.Address
+	DeletionDate *big.Int
+}, error) {
+	return _LuxUni_KYC.Contract.DeletedRegData(&_LuxUni_KYC.CallOpts, arg0)
+}
+
+// DeletedRegData is a free data retrieval call binding the contract method 0x313cea8b.
+//
+// Solidity: function deletedRegData( uint256) constant returns(nodeSender address, deletionDate uint256)
+func (_LuxUni_KYC *LuxUni_KYCCallerSession) DeletedRegData(arg0 *big.Int) (struct {
+	NodeSender   common.Address
+	DeletionDate *big.Int
+}, error) {
+	return _LuxUni_KYC.Contract.DeletedRegData(&_LuxUni_KYC.CallOpts, arg0)
+}
+
+// Founder is a free data retrieval call binding the contract method 0x4d853ee5.
+//
+// Solidity: function founder() constant returns(address)
+func (_LuxUni_KYC *LuxUni_KYCCaller) Founder(opts *bind.CallOpts) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _LuxUni_KYC.contract.Call(opts, out, "founder")
+	return *ret0, err
+}
+
+// Founder is a free data retrieval call binding the contract method 0x4d853ee5.
+//
+// Solidity: function founder() constant returns(address)
+func (_LuxUni_KYC *LuxUni_KYCSession) Founder() (common.Address, error) {
+	return _LuxUni_KYC.Contract.Founder(&_LuxUni_KYC.CallOpts)
+}
+
+// Founder is a free data retrieval call binding the contract method 0x4d853ee5.
+//
+// Solidity: function founder() constant returns(address)
+func (_LuxUni_KYC *LuxUni_KYCCallerSession) Founder() (common.Address, error) {
+	return _LuxUni_KYC.Contract.Founder(&_LuxUni_KYC.CallOpts)
+}
+
+// NumRegData is a free data retrieval call binding the contract method 0x83af428b.
+//
+// Solidity: function numRegData() constant returns(uint256)
+func (_LuxUni_KYC *LuxUni_KYCCaller) NumRegData(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _LuxUni_KYC.contract.Call(opts, out, "numRegData")
+	return *ret0, err
+}
+
+// NumRegData is a free data retrieval call binding the contract method 0x83af428b.
+//
+// Solidity: function numRegData() constant returns(uint256)
+func (_LuxUni_KYC *LuxUni_KYCSession) NumRegData() (*big.Int, error) {
+	return _LuxUni_KYC.Contract.NumRegData(&_LuxUni_KYC.CallOpts)
+}
+
+// NumRegData is a free data retrieval call binding the contract method 0x83af428b.
+//
+// Solidity: function numRegData() constant returns(uint256)
+func (_LuxUni_KYC *LuxUni_KYCCallerSession) NumRegData() (*big.Int, error) {
+	return _LuxUni_KYC.Contract.NumRegData(&_LuxUni_KYC.CallOpts)
+}
+
+// RegData is a free data retrieval call binding the contract method 0xee16c4f5.
+//
+// Solidity: function regData( uint256) constant returns(nodeSender address, ownerHash bytes, videoHash bytes, dataHash bytes, fileName string, description string, creationDate uint256, active bool)
+func (_LuxUni_KYC *LuxUni_KYCCaller) RegData(opts *bind.CallOpts, arg0 *big.Int) (struct {
+	NodeSender   common.Address
+	OwnerHash    []byte
+	VideoHash    []byte
+	DataHash     []byte
+	FileName     string
+	Description  string
+	CreationDate *big.Int
+	Active       bool
+}, error) {
+	ret := new(struct {
+		NodeSender   common.Address
+		OwnerHash    []byte
+		VideoHash    []byte
+		DataHash     []byte
+		FileName     string
+		Description  string
+		CreationDate *big.Int
+		Active       bool
+	})
+	out := ret
+	err := _LuxUni_KYC.contract.Call(opts, out, "regData", arg0)
+	return *ret, err
+}
+
+// RegData is a free data retrieval call binding the contract method 0xee16c4f5.
+//
+// Solidity: function regData( uint256) constant returns(nodeSender address, ownerHash bytes, videoHash bytes, dataHash bytes, fileName string, description string, creationDate uint256, active bool)
+func (_LuxUni_KYC *LuxUni_KYCSession) RegData(arg0 *big.Int) (struct {
+	NodeSender   common.Address
+	OwnerHash    []byte
+	VideoHash    []byte
+	DataHash     []byte
+	FileName     string
+	Description  string
+	CreationDate *big.Int
+	Active       bool
+}, error) {
+	return _LuxUni_KYC.Contract.RegData(&_LuxUni_KYC.CallOpts, arg0)
+}
+
+// RegData is a free data retrieval call binding the contract method 0xee16c4f5.
+//
+// Solidity: function regData( uint256) constant returns(nodeSender address, ownerHash bytes, videoHash bytes, dataHash bytes, fileName string, description string, creationDate uint256, active bool)
+func (_LuxUni_KYC *LuxUni_KYCCallerSession) RegData(arg0 *big.Int) (struct {
+	NodeSender   common.Address
+	OwnerHash    []byte
+	VideoHash    []byte
+	DataHash     []byte
+	FileName     string
+	Description  string
+	CreationDate *big.Int
+	Active       bool
+}, error) {
+	return _LuxUni_KYC.Contract.RegData(&_LuxUni_KYC.CallOpts, arg0)
+}
+
+// DeleteRegDatum is a paid mutator transaction binding the contract method 0x491a34f0.
+//
+// Solidity: function deleteRegDatum(_regID uint256) returns(err uint256)
+func (_LuxUni_KYC *LuxUni_KYCTransactor) DeleteRegDatum(opts *bind.TransactOpts, _regID *big.Int) (*types.Transaction, error) {
+	return _LuxUni_KYC.contract.Transact(opts, "deleteRegDatum", _regID)
+}
+
+// DeleteRegDatum is a paid mutator transaction binding the contract method 0x491a34f0.
+//
+// Solidity: function deleteRegDatum(_regID uint256) returns(err uint256)
+func (_LuxUni_KYC *LuxUni_KYCSession) DeleteRegDatum(_regID *big.Int) (*types.Transaction, error) {
+	return _LuxUni_KYC.Contract.DeleteRegDatum(&_LuxUni_KYC.TransactOpts, _regID)
+}
+
+// DeleteRegDatum is a paid mutator transaction binding the contract method 0x491a34f0.
+//
+// Solidity: function deleteRegDatum(_regID uint256) returns(err uint256)
+func (_LuxUni_KYC *LuxUni_KYCTransactorSession) DeleteRegDatum(_regID *big.Int) (*types.Transaction, error) {
+	return _LuxUni_KYC.Contract.DeleteRegDatum(&_LuxUni_KYC.TransactOpts, _regID)
+}
+
+// NewRegDatum is a paid mutator transaction binding the contract method 0xec120919.
+//
+// Solidity: function newRegDatum(_ownerHash bytes, _videoHash bytes, _dataHash bytes, _fileName string, _description string) returns(_regID uint256)
+func (_LuxUni_KYC *LuxUni_KYCTransactor) NewRegDatum(opts *bind.TransactOpts, _ownerHash []byte, _videoHash []byte, _dataHash []byte, _fileName string, _description string) (*types.Transaction, error) {
+	return _LuxUni_KYC.contract.Transact(opts, "newRegDatum", _ownerHash, _videoHash, _dataHash, _fileName, _description)
+}
+
+// NewRegDatum is a paid mutator transaction binding the contract method 0xec120919.
+//
+// Solidity: function newRegDatum(_ownerHash bytes, _videoHash bytes, _dataHash bytes, _fileName string, _description string) returns(_regID uint256)
+func (_LuxUni_KYC *LuxUni_KYCSession) NewRegDatum(_ownerHash []byte, _videoHash []byte, _dataHash []byte, _fileName string, _description string) (*types.Transaction, error) {
+	return _LuxUni_KYC.Contract.NewRegDatum(&_LuxUni_KYC.TransactOpts, _ownerHash, _videoHash, _dataHash, _fileName, _description)
+}
+
+// NewRegDatum is a paid mutator transaction binding the contract method 0xec120919.
+//
+// Solidity: function newRegDatum(_ownerHash bytes, _videoHash bytes, _dataHash bytes, _fileName string, _description string) returns(_regID uint256)
+func (_LuxUni_KYC *LuxUni_KYCTransactorSession) NewRegDatum(_ownerHash []byte, _videoHash []byte, _dataHash []byte, _fileName string, _description string) (*types.Transaction, error) {
+	return _LuxUni_KYC.Contract.NewRegDatum(&_LuxUni_KYC.TransactOpts, _ownerHash, _videoHash, _dataHash, _fileName, _description)
+}
