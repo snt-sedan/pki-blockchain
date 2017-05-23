@@ -31,7 +31,7 @@ Based On Nexus's documents the X.509 blockchain certificate
 +++++++++++++++++++++++++++++++++
 + Subject Name                  +
 +++++++++++++++++++++++++++++++++
-+  Public key information       +
++ Public key information       +
 +++++++++++++++++++++++++++++++++
 + CA Contract Address           + <--- a Change
 +++++++++++++++++++++++++++++++++
