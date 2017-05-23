@@ -1,0 +1,68 @@
+The standard version of X.509v3 
++++++++++++++++++++++++++++++++++
++ Version                       +
++++++++++++++++++++++++++++++++++
++ Algorithm Identifier          +
++++++++++++++++++++++++++++++++++
++ Period of Validity            +
++++++++++++++++++++++++++++++++++
++ Subject Name                  +
++++++++++++++++++++++++++++++++++
++  Public key information       +
++++++++++++++++++++++++++++++++++
++ Issuer Unique ID              +
++++++++++++++++++++++++++++++++++
++ Subject Unique ID
++++++++++++++++++++++++++++++++++
++ Extensions                    +
++++++++++++++++++++++++++++++++++
++ Signature                     +
++++++++++++++++++++++++++++++++++
+
+Based On Nexus's document titled with Certificate in the Etherum, 
+David Sadan, v0.0.01,
+
+The X.509 blockchain client 
++++++++++++++++++++++++++++++++++
++ Version                       +
++++++++++++++++++++++++++++++++++
++ Algorithm Identifier          +
++++++++++++++++++++++++++++++++++
++ Period of Validity            +
++++++++++++++++++++++++++++++++++
++ Subject Name                  +
++++++++++++++++++++++++++++++++++
++  Public key information       +
++++++++++++++++++++++++++++++++++
++ CA Contract Address           + <--- a Change
++++++++++++++++++++++++++++++++++
++ The address in Blockchain     + <--- a Change
++++++++++++++++++++++++++++++++++
++ Extensions                    +
++++++++++++++++++++++++++++++++++
++ Signature                     +
++++++++++++++++++++++++++++++++++
+
+While this is the sub-CA certificate: 
++++++++++++++++++++++++++++++++++
++ Version                       +
++++++++++++++++++++++++++++++++++
++ Algorithm Identifier          +
++++++++++++++++++++++++++++++++++
++ Period of Validity            +
++++++++++++++++++++++++++++++++++
++ Subject Name                  +
++++++++++++++++++++++++++++++++++
++  Public key information       +
++++++++++++++++++++++++++++++++++
++ CA Contract Address           + <--- a Change
++++++++++++++++++++++++++++++++++
++ The address in Blockchain     + <--- a Change
++++++++++++++++++++++++++++++++++
++ Extensions                    + <--- a Change
++ Contract Issuer               +
++++++++++++++++++++++++++++++++++
++ Signature                     +
++++++++++++++++++++++++++++++++++
+
+
