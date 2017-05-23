@@ -9,4 +9,4 @@ Implementation workflow:
 -----------------------------------------
 1. Define the certificate attributes.
 2. Define the CA's smart contract attributes and functions. 
-3. 
+3. Define the general components of the prototype.
