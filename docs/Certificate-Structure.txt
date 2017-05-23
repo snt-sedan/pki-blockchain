@@ -21,6 +21,7 @@ The standard version of X.509v3
 
 Based On Nexus's documents the X.509 blockchain certificate 
 ---------------------------------
+
 +++++++++++++++++++++++++++++++++
 + Version                       +
 +++++++++++++++++++++++++++++++++
