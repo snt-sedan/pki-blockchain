@@ -33,14 +33,14 @@ Based On Nexus's documents the X.509 blockchain certificate
 +++++++++++++++++++++++++++++++++
 + Public key information       +
 +++++++++++++++++++++++++++++++++
-+ CA Contract Address           + <--- a Change
++ CA Contract Address           + <--- Changed field
 +++++++++++++++++++++++++++++++++
-+ The address in Blockchain     + <--- a Change
++ The address in Blockchain     + <--- Changed field
 +++++++++++++++++++++++++++++++++
-+ Extensions                    + <--- a Change
++ Extensions                    + 
 + IsserCAContractIdentifier     +
-+ CAContractIdentifier [optinal]+
-+ BlockchainName
++ CAContractIdentifier [optinal]+ <--- Changed field
++ BlockchainName                +
 +++++++++++++++++++++++++++++++++
 + Signature                     +
 +++++++++++++++++++++++++++++++++
