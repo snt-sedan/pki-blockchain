@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="description" content="WebRTC code samples">
+  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+  <meta itemprop="description" content="Client-side WebRTC code samples">
+  <meta itemprop="name" content="WebRTC code samples">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta id="theme-color" name="theme-color" content="#ffffff">
+
+  <base target="_blank">
+
+  <title>MediaStream Recording</title>
+
+  <link rel="stylesheet" href="public/css/main.css">
+
+</head>
+
+
+<!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data -->
+
+<body>
+<h2> {{ .Desc }} </h2>
+<br>
+
+<h2> Enter new sender / receiver </h2>
+<form enctype="multipart/form-data" name="NewPersonForm" action="/eet-test" method="post" target="_self">
+<table border="0">
+<tr><td>
+    <label for="NewTypePerson" > New sender or receiver </label>
+    <table border="0">
+      <tr><input type="radio" name="NewTypePerson" value="Sender"> Sender</tr>
+      <tr><input type="radio" name="NewTypePerson" value="Receiver" checked> Receiver</tr>
+    </table>
+</td></tr>
+  <tr><td>
+    <label for="NewAddress" > Ethereum address </label>
+    <input type="text" name="NewAddress">
+    <!-- <input type="range" name="RecCategory" value="Sender"> -->
+  </td></tr>
+<tr><td>
+    <label for="NewName" > Name </label>
+    <input type="text" name="NewName" >
+</td></tr>
+</table>
+  <input type="submit" name="NewPersonButton" value="Submit">
+</form>
+<br><br>
+<h2> List of the Senders </h2>
+<form enctype="multipart/form-data" name="SenderListForm" action="/eet-test" method="post" target="_self">
+<table border="1">
+<tr>
+  <th>Address</th>
+  <th>Name</th>
+  <th>Time of initiation</th>
+  <th>Total coins donated</th>
+  <th>Balance (points - coins received)</th>
+  <th>AMOUNT</th>
+</tr>
+{{range $rec := .Senders }}
+<tr>
+    <td><input type="hidden" name="SndAddr_{{ $rec.Index }}" value="{{ $rec.Addr }}">
+      {{ $rec.Addr }}</td>
+    <td>{{ $rec.Name }}</td>
+    <td>{{ $rec.CreationStr }}</td>
+    <td>{{ $rec.TotDonationStr }}</td>
+    <td>{{ $rec.BalanceStr }}</td>
+    <td><input type="number" name="SndAmount_{{ $rec.Index }}" > </td>
+</tr>
+{{end}}
+</table>
+  <input type="submit" name="AddCoinSndButton" value="Add coins to a sender">
+</form>
+
+
+<form enctype="multipart/form-data" name="ReturnForm" action="/eet-test" method="post" target="_self">
+<table border="0">
+  <input type="submit" name="ReturnButton" value="Return">
+</table>
+</form>
+
+</body>
+</html>
+
+
