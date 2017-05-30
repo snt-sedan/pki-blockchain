@@ -1,0 +1,10 @@
+{
+  "cryptoModulHash": "0x3f2ed40488d0a9586013faa415718f3f64644fa1",
+  "contractHash": "0x5a6d8e8db0130ba82396f8a56f461d607705ac11",
+  "IPCpath": "/home/alex/.ethereum/testnet/geth.ipc",
+  "pswd": "ira",
+  "OLDkeyPath": "/home/alex/.ethereum/testnet/keystore/UTC--2017-03-28T21-20-21.979094178Z--78714b8663f11a388b9b74c3edbc42d253d2b0da",
+  "keyPath": "/home/alex/.ethereum/testnet/keystore/UTC--2017-04-12T11-28-09.467789958Z--6950d31b964889e449f8d0139c6019d74b3199a6",
+  "privateKeyPath": "a_pr.key",
+  "httpPort": 8081
+}
