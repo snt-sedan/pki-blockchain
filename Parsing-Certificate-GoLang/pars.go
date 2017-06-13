@@ -7,12 +7,15 @@ import (
 	"crypto/x509"
 	"io/ioutil"
 	"fmt"
+	"os"
 )
 
 func main() {
 	// Certificate types
 	//BlockchainTestRootCA3 % BlockchainEndUser % BlockchainTestIssuingCA3
-	cert:="BlockchainTestIssuingCA3.cer"
+	fmt.Println("\t--------------------------------")
+	cert := os.Args[1]
+	//cert:="BlockchainEndUser.cer"
 	fmt.Println("\tParsing : " + cert)
 	fmt.Println("\t--------------------------------")
 	certPEMBlock, _ := ioutil.ReadFile(cert)
