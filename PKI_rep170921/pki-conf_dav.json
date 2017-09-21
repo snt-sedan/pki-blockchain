@@ -1,0 +1,15 @@
+{
+  "cryptoModulHash": "0x3f2ed40488d0a9586013faa415718f3f64644fa1",
+  "contractHash": "0x7104a98d6841878a7518ac0e7baa8cbe9db82076",
+  "OLDIPCpath": "/home/alex/wrk/Eth_AeroNet_t/geth.ipc",
+  "IPCpath": "/home/user/ethpriv/1/geth.ipc",
+  "pswd": "ira",
+  "keyDir": "/home/user/ethpriv/1/keystore/",
+  "accountAddr": "0xde9319abc7958e1939b472a811bab05f2d79f5fc",
+  "keyFile": "UTC--2017-05-05T21-05-50.307916687Z--de9319abc7958e1939b472a811bab05f2d79f5fc",
+  "privateKeyPath": "a_pr.key",
+  "appHttpPort": 8081,
+  "restHttpPort": 8091,
+  "appUrlServer": "http://localhost",
+  "restUrlServer": "http://localhost"
+}
