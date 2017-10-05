@@ -1,0 +1,15 @@
+{
+  "cryptoModulHash": "0x3f2ed40488d0a9586013faa415718f3f64644fa1",
+  "contractHash": "0x778d81a6563d3bd442b844849abde2959e8a0dc7",
+  "contractWebHash": "0xbcb4fdab00ef3480ec91ed911f6d37f65437a28a",
+  "IPCpath": "/home/user/.ethereum/testnet/geth.ipc",
+  "pswd": "ira",
+  "keyDir": "/home/user/.ethereum/testnet/keystore/",
+  "accountAddr": "0x6950d31b964889e449f8d0139c6019d74b3199a6",
+  "keyFile": "UTC--2017-04-12T11-28-09.467789958Z--6950d31b964889e449f8d0139c6019d74b3199a6",
+  "privateKeyPath": "a_pr.key",
+  "appHttpPort": 8080,
+  "restHttpPort": 8091,
+  "appUrlServer": "http://localhost",
+  "restUrlServer": "http://localhost"
+}
