@@ -1,0 +1,15 @@
+{
+  "cryptoModulHash": "0x3f2ed40488d0a9586013faa415718f3f64644fa1",
+  "contractHash": "0x6225e70410a6ed7a59a1e8d33c8d9574610eed62",
+  "contractWebHash": "0xc43ddc2acf5f70e91cb56a96f87df97d05904388",
+  "IPCpath": "/home/alex/.ethereum/rinkeby/geth.ipc",
+  "pswd": "ira",
+  "keyDir": "/home/alex/.ethereum/rinkeby/keystore/",
+  "accountAddr": "0xb82020769363633a75e5dbe7bff10f738f7f545e",
+  "keyFile": "UTC--2017-09-21T22-52-20.741604807Z--b82020769363633a75e5dbe7bff10f738f7f545e",
+  "privateKeyPath": "a_pr.key",
+  "appHttpPort": 8081,
+  "restHttpPort": 8091,
+  "appUrlServer": "http://localhost",
+  "restUrlServer": "http://localhost"
+}
