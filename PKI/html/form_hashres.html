@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PKI infrastructure</title>
+<meta charset="utf-8">
+<meta name="description" content="WebRTC code samples">
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+<meta itemprop="description" content="Client-side WebRTC code samples">
+<meta itemprop="name" content="WebRTC code samples">
+<meta name="mobile-web-app-capable" content="yes">
+<meta id="theme-color" name="theme-color" content="#ffffff">
+<link rel="stylesheet" type="text/css" href="app.css">
+<link rel="stylesheet" href="public/css/main.css">
+</head>
+
+<body>
+<img src="snt.png" align="right" >
+<br>
+<br>
+<br>
+<br>
+<h1>PKI infrastructure over Blockchain </h1>
+<hr>
+
+<title>PKI infrastructure test</title>
+
+
+<br><br>
+<h2> {{ .RevokedStr }} </h2>
+<br><br>
+<h1> Revocation List</h1>
+<table border="1">
+<tr>
+<th>Attributes and description</th>
+<th>Time of uploading</th>
+<th>Key file</th>
+<th>Hash</th>
+  <th>EDIT CA</th>
+</tr>
+{{range $doc := .Docs }}
+<tr>
+<td>
+  {{if $doc.IsCA}}
+      {{$doc.ContrAddr}}
+  {{else}}
+      {{$doc.Desc }}
+  {{end}}
+</td>
+<td>{{ $doc.CreationStr }}</td>
+<td>{{ $doc.Name }}</td>
+<td>{{ $doc.Hash }}</td>
+  <td>
+    {{if $doc.IsCA}}
+    <form enctype="multipart/form-data" name="RevEdi{{$doc.Id}}" action="/pki-test" method="post" target="_self">
+      <input type="hidden" name="SuperParentAddr" value="{{ .ParentAddr }}">
+      <input type="hidden" name="ParentAddr" value="{{ $doc.ContrAddr }}">
+      <input type="submit" class="button button2" name="EditCAButton" value="Edit">
+    </form>
+    {{end}}
+  </td>
+</tr>
+{{end}}
+</table>
+
+<form enctype="multipart/form-data" name="ReturnForm" action="/pki-test" method="post" target="_self">
+<table border="0">
+<input type="submit" class="button button2" name="ReturnButton" value="Return">
+</form>
+<hr>
+<p style="text-align:center;">PKI infrastructure over Blockchain Prototype</p>
+</body>
+</html>
+
+

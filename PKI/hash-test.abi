@@ -1,0 +1,4 @@
+
+======= hash-test.js:HashTest =======
+Contract JSON ABI
+[{"constant":true,"inputs":[{"name":"_data","type":"bytes"}],"name":"testSHA2","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_data","type":"bytes"}],"name":"testRIPEMD","outputs":[{"name":"","type":"bytes20"}],"payable":false,"type":"function"}]
