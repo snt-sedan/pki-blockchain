@@ -20,6 +20,7 @@ It allows to:
 -----------------------------------------
 REST API for Blockchain PKI (pki-rest.go):
 
+
 ENROLL
 /enroll_user, all parameters in POST
 
@@ -44,108 +45,125 @@ Errors (details are in html body):
 
 BLACKLIST 
 /blacklist-user, all parameters are in POST
+
 Puts certificate (either ordinary or CA) from the white list to the black list
-	Parameters:
-	1. ParentAddr: the address of the CA smart contract where the certificate's hash is stored
-	2. UserAddr: the ID (address) of the user who has the privilage to modify the smart contract. The key of this user should be available in key storage
-	3. Deletion: array of strings with IDs of the items to be deleted in the user list. It is produced with checkbox HTML forms
-	Returns:
-		200 and "OK" in the html body in case of success
-		Errors (details are in html body):
-			484 : ParentAddr is incorrect
-			485 : Deletion is incorrect
-			580 : Ethereum executionn error (out of gas and others)
-			581 : Ethereum connection error
-			500 : Other error
+
+Parameters:
+1. ParentAddr: the address of the CA smart contract where the certificate's hash is stored
+2. UserAddr: the ID (address) of the user who has the privilage to modify the smart contract. The key of this user should be available in key storage
+3. Deletion: array of strings with IDs of the items to be deleted in the user list. It is produced with checkbox HTML forms
+
+Returns: 200 and "OK" in the html body in case of success
+		
+Errors (details are in html body):
+1. 484 : ParentAddr is incorrect
+2. 485 : Deletion is incorrect
+3. 580 : Ethereum executionn error (out of gas and others)
+4. 581 : Ethereum connection error
+5. 500 : Other error
 
 
 CREATE CONTRACT
 /create_contract, all params as POST
-	Creation of the "empty" CA smart contract:
-		a. CA certificate should be added to smart contract through population procedure
-		b. the right to execute the smart contract should be changed to the CA account with population procedure as well
-	Params:
-	1. ParentAddr: the address of the CA smart contract which is used for creation (it has the bin code). This address of this contract should be called at user account CurrentUserAddr
-	2. NewUserAddr - owner is set to this address at the end of the proc. If empty, then new owner is not set. At the end of the population procedure only the NewUserAddr can modify the smart contract in the future
-	3. CurrentUserAddr: - the user addr to connect to Ethereum. If empty, then set to root user addr
-	Returns:
-		200 and the smart contract address WITH heading "0x" in the html body in case of success
-		Errors (details are in html body):
-			480 : Current user does not have rights to execute the creation of the CA certificate
-			483 : NewUserAddr is incorrect
-			484 : ParentAddr is incorrect
-			485 : CurrentUserAddr is incorrect
-			580 : Ethereum execution error (out of gas and others)
-			581 : Ethereum connection error
-			500 : Other error
+
+Creation of the "empty" CA smart contract:
+1. CA certificate should be added to smart contract through population procedure
+2. the right to execute the smart contract should be changed to the CA account with population procedure as well
+	
+Params:
+1. ParentAddr: the address of the CA smart contract which is used for creation (it has the bin code). This address of this contract should be called at user account CurrentUserAddr
+2. NewUserAddr - owner is set to this address at the end of the proc. If empty, then new owner is not set. At the end of the population procedure only the NewUserAddr can modify the smart contract in the future
+3. CurrentUserAddr: - the user addr to connect to Ethereum. If empty, then set to root user addr
+
+Returns: 200 and the smart contract address WITH heading "0x" in the html body in case of success
+
+Errors (details are in html body):
+1. 480 : Current user does not have rights to execute the creation of the CA certificate
+2. 483 : NewUserAddr is incorrect
+3. 484 : ParentAddr is incorrect
+4. 485 : CurrentUserAddr is incorrect
+5. 580 : Ethereum execution error (out of gas and others)
+6. 581 : Ethereum connection error
+7. 500 : Other error
 
 
 POPULATE
 /populate_contract, all parameters in POST
-	Pupulation of the CA smart contract:
-		a. putting a certificate into the contract referencing its parent, and
-		b. setting ownership of the smartcontract to the user
-	Params:
-	1. UplFiles : uploaded certificate
-	2, NewUserAddr - owner is set to this address at the end of the proc. If empty, then new owner is not set. At the end of the population procedure only the NewUserAddr can modify the smart contract in the future
-	3, CurrentUserAddr: - the user addr to connect to Ethereum. If empty, then set to root user addr
-	4. ContrAddr: the address of the CA smart contract which should be populated. This address of this contract should be called at user account CurrentUserAddr
-	Returns:
-		200 and hash string WITHOUT heading "0x" in the html body in case of success
-		Errors (details are in html body):
-			482 : Certificate errors
-			483 : NewUserAddr is incorrect
-			484 : ContrAddr is incorrect
-			485 : CurrentUserAddr is incorrect
-			580 : Ethereum execution error (out of gas and others)
-			581 : Ethereum connection error
-			500 : Other error
+
+Population of the CA smart contract:
+1. putting a certificate into the contract referencing its parent, and
+2. setting ownership of the smartcontract to the user
+
+Params:
+1. UplFiles : uploaded certificate
+2. NewUserAddr - owner is set to this address at the end of the proc. If empty, then new owner is not set. At the end of the population procedure only the NewUserAddr can modify the smart contract in the future
+3. CurrentUserAddr: - the user addr to connect to Ethereum. If empty, then set to root user addr
+4. ContrAddr: the address of the CA smart contract which should be populated. This address of this contract should be called at user account CurrentUserAddr
+
+Returns: 200 and hash string WITHOUT heading "0x" in the html body in case of success
+
+Errors (details are in html body):
+1. 482 : Certificate errors
+2. 483 : NewUserAddr is incorrect
+3. 484 : ContrAddr is incorrect
+4. 485 : CurrentUserAddr is incorrect
+5. 580 : Ethereum execution error (out of gas and others)
+6. 581 : Ethereum connection error
+7. 500 : Other error
+
 
 DOWNLOADING OF CA CERTIFICATE FROM BLOCKCHAIN
 /download_cacert
-	Extracting (download) of certificate from CA smart contract
-	Params:
-	1. ContrAddr: the address of the CA smart contract
-	Returns:
-		200 and the smart contract address WITH heading "0x" in the html body in case of success
-		Errors (details are in html body):
-			484 : ContrAddr is incorrect
-			580 : Ethereum execution error (out of gas and others)
-			581 : Ethereum connection error
-			500 : Other error
+Extracting (download) of certificate from CA smart contract
+
+Params:
+1. ContrAddr: the address of the CA smart contract
+
+Returns:
+200 and the smart contract address WITH heading "0x" in the html body in case of success
+
+Errors (details are in html body):
+1. 484 : ContrAddr is incorrect
+2. 580 : Ethereum execution error (out of gas and others)
+3. 581 : Ethereum connection error
+4. 500 : Other error
+
 
 CERTIFICATE VALIDATION
 /validate_cert, all params as POST
-	Parameters:
-	1. Hash or UplFiles (hash is a hex string without a leading "0x")
-	2. UplFiles : uploaded certificate
-	3. ParentAddr: the address of the CA smart contract where the certificate's hash is stored. If certificate is uploaded through UplFiles, ParentAddr may not be specified
-	Returns:
-		200 and JSON with the validation results in the html body in case of success
-		Errors (details are in html body):
-			480 : hash has wrong length or hash is incorrect
-			482 : Certificate errors in case it was provided instead of hash
-			484 : ParentAddr is incorrect
-			580 : Ethereum execution error (out of gas and others)
-			581 : Ethereum connection error
-			500 : Other error
+	
+Parameters:
+1. Hash or UplFiles (hash is a hex string without a leading "0x")
+2. UplFiles : uploaded certificate
+3. ParentAddr: the address of the CA smart contract where the certificate's hash is stored. If certificate is uploaded through UplFiles, ParentAddr may not be specified
 
+Returns: 200 and JSON with the validation results in the html body in case of success
+		
+Errors (details are in html body):
+1. 480 : hash has wrong length or hash is incorrect
+2. 482 : Certificate errors in case it was provided instead of hash
+3. 484 : ParentAddr is incorrect
+4. 580 : Ethereum execution error (out of gas and others)
+5. 581 : Ethereum connection error
+6. 500 : Other error
 
 Validation result codes (used in smart contract validation, for instance):
-            0  - OK, the certificate is valid
-            1  - certificate not found
-            2  - certificate revoked
-            11 - error in parsing
-            12 - CA addr in the certificate does not correspond to _addrCA
-            13 - empty cert received for this CA
-            14 - empty addrCA parsed in this CA cert
-            15 - parent addr is null, but CA addr does not correspond to Root addr  
-            16 - too many iterations: a certain limit (100?) is exceeded
+1. 0  - OK, the certificate is valid
+2. 1  - certificate not found
+3. 2  - certificate revoked
+4. 11 - error in parsing
+5. 12 - CA addr in the certificate does not correspond to _addrCA
+6. 13 - empty cert received for this CA
+7. 14 - empty addrCA parsed in this CA cert
+8. 15 - parent addr is null, but CA addr does not correspond to Root addr  
+9. 16 - too many iterations: a certain limit (100?) is exceeded
+
 
 SMART CONTRACT VERIFICATION:
-CheckCert(Hash, CurrentContract, Root Contract)  – the verification itself
-DecodeReturnErr(returnCode_from_CheckCert) – the validation result code
-DecodeReturnIter(returnCode_from_CheckCert) – the level from leaf to the root (starting from 0) where the code should be applied. If certificate is valid the number of levels to the root from the leaf
+1. CheckCert(Hash, CurrentContract, Root Contract)  – the verification itself
+2. DecodeReturnErr(returnCode_from_CheckCert) – the validation result code
+3. DecodeReturnIter(returnCode_from_CheckCert) – the level from leaf to the root (starting from 0) where the code 
+4. should be applied. If certificate is valid the number of levels to the root from the leaf
 
 Example: 
 
@@ -161,34 +179,31 @@ verif.DecodeReturnIter(verif.CheckCert("0x4c39a4efe6a1266bb4d479716fc0a674128c54
 ---------------------------------------------------------------
 Installation:
 
-1. Compile smart contracts 
-cd ./scontract
-solc --bin pki_scont.sol > bin/pki_scont.bin
-solc --bin pki_scont_web.sol > bin/pki_scont_web.bin
-solc --bin pki_scont_valid.sol > bin/pki_scont_valid.bin
-solc --abi pki_scont.sol > abi/pki_abi.json
-solc --abi pki_scont_web.sol > abi/pki_abi_web.json
-solc --abi pki_scont_valid.sol > abi/pki_abi_valid.json
+A. Compile smart contracts 
+1. cd ./scontract
+2. solc --bin pki_scont.sol > bin/pki_scont.bin
+3. solc --bin pki_scont_web.sol > bin/pki_scont_web.bin
+4. solc --bin pki_scont_valid.sol > bin/pki_scont_valid.bin
+5. solc --abi pki_scont.sol > abi/pki_abi.json
+6. solc --abi pki_scont_web.sol > abi/pki_abi_web.json
+7. solc --abi pki_scont_valid.sol > abi/pki_abi_valid.json
 
 
-2. Deploy smart contracts to Ethereum (public or private) 
+B. Deploy smart contracts to Ethereum (public or private) 
 
-3. Generate bindings for smart contracts in Golang
-cd ../
-abigen --abi ./scontract/abi/pki_abi.json --pkg main --type LuxUni_PKI --out bind_pki.go --bin ./scontract/bin/pki_scont.bin
-abigen --abi ./scontract/abi/pki_abi_web.json --pkg main --type LuxUni_PKI_web --out bind_pki_web.go
-abigen --abi ./scontract/abi/pki_abi_valid.json --pkg main --type LuxUni_PKI_valid --out bind_pki_valid.go
+C. Generate bindings for smart contracts in Golang
+1. cd ../
+2. abigen --abi ./scontract/abi/pki_abi.json --pkg main --type LuxUni_PKI --out bind_pki.go --bin ./scontract/bin/pki_scont.bin
+3. abigen --abi ./scontract/abi/pki_abi_web.json --pkg main --type LuxUni_PKI_web --out bind_pki_web.go
+4. abigen --abi ./scontract/abi/pki_abi_valid.json --pkg main --type LuxUni_PKI_valid --out bind_pki_valid.go
 
-4. Compile REST service (pki-rest) and testing web server (pki-web)  
-cd <go-ethereum dir>
-godep go build <current PKI dir>/pki-rest.go <current PKI dir>/bind_pki.go <current PKI dir>/pki_conf.go
-godep go build <current PKI dir>/pki-web.go <current PKI dir>bind_pki.go <current PKI dir>/bind_pki_web.go <current PKI dir>/pki_conf.go
+D. Compile REST service (pki-rest) and testing web server (pki-web)  
+1. cd <go-ethereum dir>
+2. godep go build <current PKI dir>/pki-rest.go <current PKI dir>/bind_pki.go <current PKI dir>/pki_conf.go
+3. godep go build <current PKI dir>/pki-web.go <current PKI dir>bind_pki.go <current PKI dir>/bind_pki_web.go <current PKI dir>/pki_conf.go
 
-5. Configure pki-rest and pki-web, if needed (update of smart contract address, etc)
+E. Configure pki-rest and pki-web, if needed (update of smart contract address, etc)
 By default, configuration file is ./config/pki-conf.json
-For a different config file, use -config flag/parameter.
-For instance:
-./pki-rest -config=./config/pki-conf_smth.json
 
 
 
