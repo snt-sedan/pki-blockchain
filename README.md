@@ -21,7 +21,7 @@ It allows to:
 REST API for Blockchain PKI (pki-rest.go):
 
 
-ENROLL
+A. ENROLL
 /enroll_user, all parameters in POST
 
 Parameters:
@@ -43,7 +43,7 @@ Errors (details are in html body):
 8. 500 : Other error
 
 
-BLACKLIST 
+B. BLACKLIST 
 /blacklist-user, all parameters are in POST
 
 Puts certificate (either ordinary or CA) from the white list to the black list
@@ -63,7 +63,7 @@ Errors (details are in html body):
 5. 500 : Other error
 
 
-CREATE CONTRACT
+C. CREATE CONTRACT
 /create_contract, all params as POST
 
 Creation of the "empty" CA smart contract:
@@ -87,7 +87,7 @@ Errors (details are in html body):
 7. 500 : Other error
 
 
-POPULATE
+D. POPULATE
 /populate_contract, all parameters in POST
 
 Population of the CA smart contract:
@@ -112,7 +112,7 @@ Errors (details are in html body):
 7. 500 : Other error
 
 
-DOWNLOADING OF CA CERTIFICATE FROM BLOCKCHAIN
+E. DOWNLOADING OF CA CERTIFICATE FROM BLOCKCHAIN
 /download_cacert
 Extracting (download) of certificate from CA smart contract
 
@@ -129,7 +129,7 @@ Errors (details are in html body):
 4. 500 : Other error
 
 
-CERTIFICATE VALIDATION
+F. CERTIFICATE VALIDATION
 /validate_cert, all params as POST
 	
 Parameters:
@@ -158,7 +158,7 @@ Validation result codes (used in smart contract validation, for instance):
 8. 15 - parent addr is null, but CA addr does not correspond to Root addr  
 9. 16 - too many iterations: a certain limit (100?) is exceeded
 
-
+---------------------------------------------------
 SMART CONTRACT VERIFICATION:
 1. CheckCert(Hash, CurrentContract, Root Contract)  – the verification itself
 2. DecodeReturnErr(returnCode_from_CheckCert) – the validation result code
