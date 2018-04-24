@@ -167,7 +167,7 @@ SMART CONTRACT VERIFICATION:
 
 Example: 
 
-verif = eth.contract(<ABI>).at(<VERIF_CONTR_ADDRESS>)
+verif = eth.contract({ABI}).at({VERIF_CONTR_ADDRESS})
 
 // To get verification result (0 if valid):
 verif.DecodeReturnErr(verif.CheckCert("0x4c39a4efe6a1266bb4d479716fc0a674128c5437ba6ddafe63ba326307c430f9","0x27290fea2bf264b221ba1e97518650fcce1cf0d5","0x778d81a6563d3bd442b844849abde2959e8a0dc7"))
@@ -198,9 +198,9 @@ C. Generate bindings for smart contracts in Golang
 4. abigen --abi ./scontract/abi/pki_abi_valid.json --pkg main --type LuxUni_PKI_valid --out bind_pki_valid.go
 
 D. Compile REST service (pki-rest) and testing web server (pki-web)  
-1. cd <go-ethereum dir>
-2. godep go build <current PKI dir>/pki-rest.go <current PKI dir>/bind_pki.go <current PKI dir>/pki_conf.go
-3. godep go build <current PKI dir>/pki-web.go <current PKI dir>bind_pki.go <current PKI dir>/bind_pki_web.go <current PKI dir>/pki_conf.go
+1. cd {go-ethereum dir}
+2. godep go build {current PKI dir}/pki-rest.go {current PKI dir}/bind_pki.go {current PKI dir}/pki_conf.go
+3. godep go build {current PKI dir}/pki-web.go {current PKI dir}/bind_pki.go {current PKI dir}/bind_pki_web.go {current PKI dir}/pki_conf.go
 
 E. Configure pki-rest and pki-web, if needed (update of smart contract address, etc)
 By default, configuration file is ./config/pki-conf.json
