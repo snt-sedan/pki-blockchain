@@ -22,12 +22,15 @@ REST API for Blockchain PKI (pki-rest.go):
 
 ENROLL
 /enroll_user, all parameters in POST
+
 Parameters:
 1. Hash or UplFiles (hash is a hex string without a leading "0x")
 2. UplFiles : uploaded certificate
 3. ParentAddr: the address of the CA smart contract where the certificate's hash is stored.This address of this contract should be called at user account CurrentUserAddr
 4. CurrentUserAddr: the ID (address) of the user who has the privilage to modify the parent smart contract. The key of this user should be available in key storage
+
 Returns: 200 and "OK" in the html body in case of success
+
 Errors (details are in html body):
 1. 480 : hash has the wrong length or hash is incorrect
 2. 481 : hash is already enrolled
