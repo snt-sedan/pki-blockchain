@@ -1,7 +1,9 @@
 # PKI-blockchain
 
 Public-Key Infrastructure (PKI) is the cornerstone technology that facilitates secure information exchange over the Internet. However, PKI is exposed to risks due to potential failures of Certificate Authorities (CAs) that may be used to issue unauthorized certificates for end-users. Many recent breaches show that if a CA is compromised, the security of the corresponding end-users will be in risk. 
+
 As an emerging solution, Blockchain technology potentially resolves the problems of traditional PKI systems - in particular, elimination of single point-of-failure and rapid reaction to CAs shortcomings. Blockchain has the ability to store and manage digital certificates within a public and immutable ledger, resulting in a fully traceable history log. 
+
 We designed and developed a blockchain-based PKI management framework for issuing, validating and revoking X.509 certificates. Evaluation and experimental results confirm that the proposed framework provides more reliable and robust PKI systems with modest maintenance costs.
 
 ------------------------------------------
@@ -20,22 +22,21 @@ REST API for Blockchain PKI (pki-rest.go):
 
 ENROLL
 /enroll_user, all parameters in POST
-	Parameters:
-	1. Hash or UplFiles (hash is a hex string without a leading "0x")
-	2. UplFiles : uploaded certificate
-	3. ParentAddr: the address of the CA smart contract where the certificate's hash is stored.This address of this contract should be called at user account CurrentUserAddr
-	4. CurrentUserAddr: the ID (address) of the user who has the privilage to modify the parent smart contract. The key of this user should be available in key storage
-	Returns:
-		200 and "OK" in the html body in case of success
-		Errors (details are in html body):
-			480 : hash has the wrong length or hash is incorrect
-			481 : hash is already enrolled
-			482 : Certificate errors in case it was provided instead of hash
-			484 : ParentAddr is incorrect
-			485 : CurrentUserAddr is incorrect
-			580 : Ethereum execution error (out of gas and others)
-			581 : Ethereum connection error
-			500 : Other error
+Parameters:
+1. Hash or UplFiles (hash is a hex string without a leading "0x")
+2. UplFiles : uploaded certificate
+3. ParentAddr: the address of the CA smart contract where the certificate's hash is stored.This address of this contract should be called at user account CurrentUserAddr
+4. CurrentUserAddr: the ID (address) of the user who has the privilage to modify the parent smart contract. The key of this user should be available in key storage
+Returns: 200 and "OK" in the html body in case of success
+Errors (details are in html body):
+1. 480 : hash has the wrong length or hash is incorrect
+2. 481 : hash is already enrolled
+3. 482 : Certificate errors in case it was provided instead of hash
+4. 484 : ParentAddr is incorrect
+5. 485 : CurrentUserAddr is incorrect
+6. 580 : Ethereum execution error (out of gas and others)
+7. 581 : Ethereum connection error
+8. 500 : Other error
 
 
 BLACKLIST 
