@@ -1,0 +1,19 @@
+{
+  "contractHashOLD": "0xa422f3193fc5402702fbb5fac6bcc4cb42ccde0c",
+  "contractWebHashOLD": "0xe6268ff92ed7b4eb08e7272ad1d49871d8befbcf",
+  "contractHash": "0x0f39013ddec5fb9831b6482f63d18acc8a436cfa",
+  "contractWebHash": "0x6d75278c36b9565afc97394fa3cf24ff833d67cd",
+  "IPCpath": "/home/alex/wrk/Eth_AeroNet_t/geth.ipc",
+  "pswd": "ira",
+  "keyDir": "/home/alex/wrk/Eth_AeroNet_t/keystore/",
+  "accountAddr": "0xde9319abc7958e1939b472a811bab05f2d79f5fc",
+  "NOT_USED_keyFile": "UTC--2017-05-05T21-05-50.307916687Z--de9319abc7958e1939b472a811bab05f2d79f5fc",
+  "NOT_USED_privateKeyPath": "a_pr.key",
+  "appHttpPort": 8081,
+  "restHttpPort": 8091,
+  "ethereumRpcPort": 8084,
+  "appUrlServer": "http://localhost",
+  "restUrlServer": "http://localhost",
+  "ethereumRpcUrl": "http://localhost",
+  "fileWebPath": "/home/alex/wrk/Dropbox/WORK/RD/LuxBCh/PKI_gitarch/public"
+}
