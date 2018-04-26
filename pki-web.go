@@ -169,7 +169,7 @@ func main() {
 	r.HandleFunc("/download_cacert", DownloadCaCert)
 	r.HandleFunc("/generate_user_cert", GenerateUserCert)
 
-	fs := http.FileServer(http.Dir("/home/user/app/pki/public"))
+	fs := http.FileServer(http.Dir(gConfig.FileWebPath))
 	spref := http.StripPrefix("/public/", fs)
 	r.PathPrefix("/public/").Handler(spref)
 	http.Handle("/", r)

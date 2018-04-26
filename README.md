@@ -162,8 +162,7 @@ Validation result codes (used in smart contract validation, for instance):
 SMART CONTRACT VERIFICATION:
 1. CheckCert(Hash, CurrentContract, Root Contract)  – the verification itself
 2. DecodeReturnErr(returnCode_from_CheckCert) – the validation result code
-3. DecodeReturnIter(returnCode_from_CheckCert) – the level from leaf to the root (starting from 0) where the code 
-4. should be applied. If certificate is valid the number of levels to the root from the leaf
+3. DecodeReturnIter(returnCode_from_CheckCert) – the level from leaf to the root (starting from 0) where the code should be applied. If certificate is valid the number of levels to the root from the leaf
 
 Example: 
 
