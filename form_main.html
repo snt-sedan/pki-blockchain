@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PKI infrastructure</title>
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css" href="public/app.css">
+    <link rel="stylesheet" href="public/css/main.css">
+</head>
+
+<body>
+    <img src="public/snt.png" align="right">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>PKI infrastructure over Blockchain </h1>
+    <hr>
+
+    <title>PKI infrastructure test</title>
+
+
+
+    <script>
+        /*
+                                          // Check for the various File API support.
+                                          if (window.File && window.FileReader && window.FileList) {
+                                            // Great success! All the File APIs are supported.
+                                          } else {
+                                            alert('The File APIs are not fully supported in this browser.');
+                                          }
+
+                                          var serversocket = new WebSocket("ws://localhost:8080/echo");
+                                         
+                                          serversocket.onopen = function() {
+                                              serversocket.send("Connection init");
+                                          }
+                                         
+                                          // Write message on receive
+                                          serversocket.onmessage = function(e) {
+                                              //document.getElementById('comms').innerHTML += "Received: " + e.data + "<br>";
+                                              if e.data == "reload" {
+                                                  window.location.reload(true);
+                                              }
+                                          };
+                                         
+
+                                          function handleFileSelect(evt) {
+                                            var files = evt.target.UplFiles; // FileList object
+
+                                            alert("I'm here")
+                                            // files is a FileList of File objects. List some properties.
+                                            var output = [];
+                                            for (var i = 0, f; f = files[i]; i++) {
+                                              output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                                                          f.size, ' bytes, last modified: ',
+                                                          f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                                                          '</li>');
+                                            }
+                                            document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+                                          }
+
+                                          document.getElementById('UplFiles').addEventListener('change', handleFileSelect, false);
+                                        */
+    </script>
+
+    <body>
+        {{ $vSuperUserAddr := .SuperUserAddr }}
+        <br><br>
+        <h1> Certificate Authority (CA) : {{.ParentAddr}} </h1>
+        <p>
+            Parent of this CA (zero if the root) : {{.SuperParentAddr}}
+            <p>
+                Account address : {{ $vSuperUserAddr }}
+                <p>
+
+
+                    <form enctype="multipart/form-data" name="DownloadCert" action="/download_cacert" method="post">
+                        <input type="hidden" name="ContrAddr" value="{{.ParentAddr}}">
+                        <input type="submit" class="button button2" name="DownloadCertButton" value="Download Certificate of this CA">
+                    </form>
+
+                    {{if not .IsRoot}}
+                    <form enctype="multipart/form-data" name="ParentForm" action="/pki-test" method="post" target="_self">
+                        <input type="hidden" name="ParentAddr" value="{{ .SuperParentAddr }}">
+                        <input type="submit" class="button button2" name="EditCAButton" value="Go to parent contract">
+                    </form>
+                    {{end}} {{if .IsRoot}}
+                    <form enctype="multipart/form-data" name="PopulateCurrentRequest" action="/populate_contract" method="post" target="_self">
+                        <input type="hidden" name="ContrAddr" value="{{.ParentAddr}}">
+                        <input type="submit" class="button button2" name="PopulateCurrentButton" value="Populate Root Contract">
+                    </form>
+                    {{end}}
+
+
+                    <br><br>
+                    <table border="1">
+                        <tr>
+                            <th>Attributes and description</th>
+                            <th>Time of uploading</th>
+                            <th>Key file</th>
+                            <th>Hash</th>
+                            <th>REVOCATION</th>
+                            <th>EDIT CA</th>
+                        </tr>
+                        {{range $doc := .Docs }}
+                        <tr>
+                            <td>
+                                {{if $doc.IsCA}} {{$doc.ContrAddr}} {{else}} {{$doc.Desc }} {{end}}
+                            </td>
+                            <td>{{ $doc.CreationStr }}</td>
+                            <td>{{ $doc.Name }}</td>
+                            <td>{{ $doc.Hash }}</td>
+                            <td>
+                                <form enctype="multipart/form-data" name="Rev{{$doc.Id}}" action="/blacklist_user" method="post" target="_self">
+                                    <!--input type="hidden" name="Deletion" value="{{ $doc.Id }}"-->
+                                    <input type="hidden" name="Deletion" value="{{ $doc.Hash }}">
+                                    <input type="hidden" name="ParentAddr" value="{{$doc.ParentAddr}}">
+                                    <input type="hidden" name="UserAddr" value="{{ $vSuperUserAddr }}">
+                                    <input type="submit" class="button button3" name="DeleteButton" value="Revoke">
+                                </form>
+                            </td>
+                            <td>
+                                {{if $doc.IsCA}}
+                                <form enctype="multipart/form-data" name="Edi{{$doc.Id}}" action="/pki-test" method="post" target="_self">
+                                    <input type="hidden" name="SuperParentAddr" value="{{ $doc.ParentAddr }}">
+                                    <input type="hidden" name="ParentAddr" value="{{ $doc.ContrAddr }}">
+                                    <input type="hidden" name="UserAddr" value="{{ $doc.UserAddr }}">
+                                    <input type="submit" class="button button3" name="EditCAButton" value="Edit">
+                                </form>
+                                {{end}}
+                            </td>
+                        </tr>
+                        {{end}}
+                    </table>
+                    <form enctype="multipart/form-data" name="RevokeListRequest" action="/pki-test" method="post" target="_self">
+                        <input type="hidden" name="SuperParentAddr" value="{{ .SuperParentAddr }}">
+                        <input type="hidden" name="ParentAddr" value="{{ .ParentAddr }}">
+                        <input type="submit" class="button button3" name="RevokeListButton" value="Show Revocation List" populate_contract>
+                    </form>
+
+                    <p>
+                        <table border="1">
+                            <table border="0">
+                                <tr>
+                                    <form enctype="multipart/form-data" name="ValidateCert" action="/validate_form" method="post" target="_self">
+                                        <input type="hidden" name="ParentAddr" value="{{.ParentAddr}}">
+                                        <input type="submit" class="button button2" name="ValidateCertButton" value="Upload and Validate Certificate">
+                                    </form>
+                                </tr>
+                                <tr>
+                                    <form enctype="multipart/form-data" name="ValidateCertHash" action="/validate_cert" method="post" target="_self">
+                                        <input type="hidden" name="ParentAddr" value="{{.ParentAddr}}"> Enter Certificate's hash <input type="text" name="Hash">
+                                        <input type="submit" class="button button2" name="ValidateCertButton" value="Validate Certificate's hash">
+                                    </form>
+                                </tr>
+                            </table>
+                        </table>
+
+                        <p>
+                            <form enctype="multipart/form-data" name="NewACRequest" action="/create_contract" method="post" target="_self">
+                                Enter subCA user address <input type="text" name="NewUserAddr">
+                                <input type="hidden" name="CurrentUserAddr" value="{{.SuperUserAddr}}">
+                                <input type="hidden" name="ParentAddr" value="{{.ParentAddr}}">
+                                <input type="submit" class="button button2" name="NewContrButton" value="New subCA">
+                            </form>
+
+                            <p> <br>
+                                <table border="1">
+                                    <tr>
+                                        <td>
+                                            <form enctype="multipart/form-data" name="GenerateUserCert" action="/generate_user_cert" method="post">
+                                                <table border="0">
+                                                    <tr>
+                                                        <td>
+                                                            TESTING: end user certificate generation for this contract
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td> End user name (for the certificate) <input type="text" name="Name"> </td>
+                                                    </tr>
+                                                </table>
+                                                <input type="hidden" name="InsertAddr" value="{{.ParentAddr}}">
+                                                <input type="submit" class="button button2" name="AddButton" value="Generate certificate">
+
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                                <p> <br>
+                                    <table border="1">
+                                        <tr>
+                                            <td>
+                                                <form enctype="multipart/form-data" name="DocUpload" action="/enroll_user" method="post" target="_self">
+                                                    <table border="0">
+                                                        <tr>
+                                                            <td>
+                                                                With the button below please pick the certificate to add to the white list
+                                                            </td>
+                                                        </tr>
+
+                                                        <!--
+ <tr><td> Description <input type="text" name="Desc"> </td></tr>
+ <tr><td>
+   <input type="checkbox" name="Encryption" value="Encrypt">To encrypt
+</tr></td> -->
+                                                        <tr>
+                                                            <td>
+                                                                <input type="file" id="UplFiles" name="UplFiles" multiple>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <input type="hidden" name="ParentAddr" value="{{.ParentAddr}}">
+                                                    <input type="hidden" name="CurrentUserAddr" value="{{.SuperUserAddr}}">
+                                                    <input type="submit" class="button button2" class="button button2" name="AddButton" value="Upload document">
+
+                                                    <output id="list">  </output>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+
+
+                                    <hr>
+                                    <p style="text-align:center;">PKI infrastructure over Blockchain Prototype</p>
+
+    </body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PKI infrastructure</title>
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css" href="public/app.css">
+    <link rel="stylesheet" href="public/css/main.css">
+</head>
+
+<body>
+    <img src="public/snt.png" align="right">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>PKI infrastructure over Blockchain </h1>
+    <hr>
+
+    <title>PKI infrastructure test</title>
+
+
+    <script>
+        /*
+          // Check for the various File API support.
+          if (window.File && window.FileReader && window.FileList) {
+            // Great success! All the File APIs are supported.
+          } else {
+            alert('The File APIs are not fully supported in this browser.');
+          }
+
+          var serversocket = new WebSocket("ws://localhost:8080/echo");
+         
+          serversocket.onopen = function() {
+              serversocket.send("Connection init");
+          }
+         
+          // Write message on receive
+          serversocket.onmessage = function(e) {
+              //document.getElementById('comms').innerHTML += "Received: " + e.data + "<br>";
+              if e.data == "reload" {
+                  window.location.reload(true);
+              }
+          };
+         
+
+          function handleFileSelect(evt) {
+            var files = evt.target.UplFiles; // FileList object
+
+            alert("I'm here")
+            // files is a FileList of File objects. List some properties.
+            var output = [];
+            for (var i = 0, f; f = files[i]; i++) {
+              output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                          f.size, ' bytes, last modified: ',
+                          f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                          '</li>');
+            }
+            document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+          }
+
+          document.getElementById('UplFiles').addEventListener('change', handleFileSelect, false);
+        */
+    </script>
+
+
+    <br><br>
+    <h1> {{.Result}} </h1>
+
+    <pre>
+{{.Data}}
+</pre>
+
+    <br><br>
+    <form enctype="multipart/form-data" name="SimpleFormRequest" action="{{.CallForm}}" method="post" target="_self">
+        {{ range $par := .Params }}
+        <input type="hidden" name="{{$par.Name}}" value="{{$par.Value}}"> {{ end }}
+        <input type="submit" class="button button2" name="SimpleFormButton" value="Submit"> {{ if .IsUploadFileForm }}
+        <input type="file" id="UplFiles" name="UplFiles" multiple> {{ end }}
+    </form>
+
+    <hr>
+    <p style="text-align:center;">PKI infrastructure over Blockchain Prototype</p>
+</body>
+
+</html>
